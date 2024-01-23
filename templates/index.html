@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Garage Door Status</title>
+    <style>
+        .status {
+            font-size: 24px;
+            margin-top: 20px;
+            color: #333;
+        }
+        .open {
+            color: green;
+        }
+        .closed {
+            color: red;
+        }
+        .unknown {
+            color: orange;
+        }
+    </style>
+</head>
+<body>
+    <h1>Garage Door Status</h1>
+    <div id="doorStatus" class="status {{ door_status }}">{{ door_status }}</div>
+</body>
+</html>
