@@ -14,7 +14,7 @@ This project is an IoT application that monitors and reports the status of a gar
 1. git clone
 2. pip install -r requirements.txt
 3. edit config.py
-4. python main.py
+4. Run Application - python main.py
 
 ## License
 
