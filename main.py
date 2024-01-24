@@ -1,8 +1,7 @@
-from flask import Flask, render_template
-import config
+from flask import Flask, render_template, jsonify
 from mqtt_handler import setup_mqtt
-from background_task import start_background_task, last_state
 import os
+import global_variables
 
 # Initialize Flask app
 app = Flask(__name__)
@@ -11,16 +10,23 @@ app.config.from_object('config')
 # Initialize MQTT
 setup_mqtt(app)
 
+
 # Start the background task
-start_background_task()
+#start_background_task()
 
 
 @app.route('/')
 def index():
-    # You can add logic here to check the actual status of the garage door
-    current_state = last_state
-    print("Door status in route:", current_state)
-    return render_template('index.html', door_status=str(current_state))
+    print("FLASK Door-Status: ", global_variables.last_state)
+    return render_template('index.html', door_status=str(global_variables.last_state))
+
+
+@app.route('/api')
+def api():
+    data = [
+        {"name": "Garage1", "state": str(global_variables.last_state), "last_updated": str(global_variables.last_state.time)}
+    ]
+    return jsonify(data)
 
 # Start the Flask application
 if __name__ == '__main__':

@@ -1,4 +1,4 @@
-# Flask settings
+# Flask setting
 DEBUG = True
 
 # MQTT settings
